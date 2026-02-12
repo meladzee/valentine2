@@ -1,144 +1,126 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჩემი ვალენტინი ❣️</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: #ffe6e6;
-            color: #333;
-            text-align: center;
-            overflow: hidden;
-        }
-        #question {
-            margin-top: 100px;
-            font-size: 2rem;
-            color: #b30059;
-            position: relative;
-        }
-        #yesBtn {
-            display: inline-block;
-            margin: 30px auto 0 auto;
-            font-size: 1.5rem;
-            padding: 10px 20px;
-            background-color: #ff4da6;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-        }
-        #yesBtn:hover {
-            background-color: #ff1a75;
-        }
-        #noBtn {
-            display: inline-block;
-            margin: 30px auto 0 auto;
-            font-size: 1.5rem;
-            padding: 10px 20px;
-            background-color: #999;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-            position: absolute;
-        }
-        #noBtn:hover {
-            background-color: #666;
-        }
-        #content {
-            display: none;
-            margin-top: 50px;
-            font-size: 2rem;
-            color: #b30059;
-            position: relative;
-            z-index: 1;
-        }
-        .heart {
-            position: absolute;
-            font-size: 24px;
-            animation: floatUp linear forwards;
-            pointer-events: none;
-        }
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-800px) scale(1.5);
-                opacity: 0;
-            }
-        }
-        #valentinePhoto {
-            margin-top: 20px;
-            width: 300px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ჩემი ვალენტინი ❣️</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #ffe6e6;
+        overflow: hidden;
+        text-align: center;
+    }
+    #question {
+        margin-top: 100px;
+        font-size: 2rem;
+        color: #b30059;
+        position: relative;
+    }
+    #yesBtn, #noBtn {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        margin: 20px;
+        position: relative;
+        z-index: 2;
+    }
+    #yesBtn {
+        background-color: #ff4da6;
+    }
+    #yesBtn:hover { background-color: #ff1a75; }
+    #noBtn {
+        background-color: #999;
+        position: absolute;
+    }
+    #noBtn:hover { background-color: #666; }
+    #content {
+        display: none;
+        margin-top: 50px;
+        font-size: 2rem;
+        color: #b30059;
+    }
+    #valentinePhoto {
+        margin-top: 20px;
+        width: 300px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+    }
+    .heart {
+        position: absolute;
+        font-size: 24px;
+        pointer-events: none;
+        animation: floatUp 4s linear forwards;
+    }
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity:1; }
+        100% { transform: translateY(-800px) scale(1.5); opacity:0; }
+    }
+</style>
 </head>
 <body>
 
-    <div id="question">
-        <p>იქნებით ჩემი ვალენტინი? ❣️</p>
-        <button id="yesBtn">კი</button>
-        <button id="noBtn">არა</button>
-    </div>
+<div id="question">
+    <p>იქნებით ჩემი ვალენტინი? ❣️</p>
+    <button id="yesBtn">კი</button>
+    <button id="noBtn">არა</button>
+</div>
 
-    <div id="content">
-        ❣️ კანეშნა, ჩემი ვალენტინი ხარ ფიშოო! ❣️
-        <audio id="bgMusic" loop>
-            <source src="JustTwoofUs.mp3" type="audio/mpeg">
-        </audio>
-        <!-- შენი ფოტო -->
-        <img id="valentinePhoto" src="love.jpg" alt="ჩემი ვალენტინი">
-    </div>
+<div id="content">
+    ❣️ კანეშნა, ჩემი ვალენტინი ხარ ფიშოო! ❣️
+    <audio id="bgMusic" loop>
+        <source src="JustTwoofUs.mp3" type="audio/mpeg">
+    </audio>
+    <img id="valentinePhoto" src="love.jpg" alt="ჩემი ვალენტინი">
+</div>
 
-    <script>
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const content = document.getElementById('content');
-        const question = document.getElementById('question');
-        const music = document.getElementById('bgMusic');
+<script>
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const content = document.getElementById('content');
+const question = document.getElementById('question');
+const music = document.getElementById('bgMusic');
 
-        // როცა "კი"-ს დაჭერს
-        yesBtn.addEventListener('click', () => {
-            question.style.display = 'none';
-            content.style.display = 'block';
-            music.play();
-            startHearts();
-        });
+// კლიკის მერე ყველაფერი იწყება
+yesBtn.addEventListener('click', () => {
+    question.style.display = 'none';
+    content.style.display = 'block';
+    music.play();
+    startHearts();
+});
 
-        // "არა" ღილაკის თამაში
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-        });
+// "არა" ღილაკი ხტება
+noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
 
-        // ❤️-ების ფრენა
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerText = '❣️';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.fontSize = (20 + Math.random() * 30) + 'px';
-            document.body.appendChild(heart);
+// ❤️-ების შექმნა
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = '❣️';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+    document.body.appendChild(heart);
 
-            heart.addEventListener('animationend', () => {
-                heart.remove();
-            });
-        }
+    heart.addEventListener('animationend', () => {
+        heart.remove();
+    });
+}
 
-        function startHearts() {
-            setInterval(createHeart, 300);
-        }
-    </script>
+// ❤️ ყოველ 300ms
+function startHearts() {
+    setInterval(createHeart, 300);
+}
+</script>
 
 </body>
 </html>
